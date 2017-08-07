@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="github">
+<head>
+    <script src="https://code.angularjs.org/1.5.2/angular.min.js"></script>
+    <script src="script.js"></script>
+    <title>Document</title>
+</head>
+<body ng-controller="maincntl">
+    <form name="searchUser" ng-submit="search(username)">
+        <input type="search" required placeholder="Username to find" ng-model="username" />
+        <input type="submit" value="search" />
+    </form>
+    <div>
+        <div>
+            <h1>{{error}}</h1>
+            <h1>Username : {{user.name}}</h1>
+        </div>
+        <table id="tableData">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Stars</th>
+                    <th>Language</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="repo in repos | orderBy:'-stargazers_count'">
+                   <td>{{repo.name}}</td>
+                   <td>{{repo.stargazers_count}}</td>
+                   <td>{{repo.language}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
